@@ -1,0 +1,13 @@
+
+<h2>User info</h2>
+<%= form_with model:@user, url:"/users/#{@user.id}", local:true do |f| %>
+  <label for="user_name">Name</label>
+   <%= f.text_field :name, autofocus: true, id:"user_name" %>
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+  <label for="user_image">Image</label>
+   <%= f.attachment_field :profile_image %>
+  <label for="user_introduction">Introduction</label>
+    <%= f.text_area :introduction %>
+  <%= f.submit "Update User" %>
+  
+<% end %>
