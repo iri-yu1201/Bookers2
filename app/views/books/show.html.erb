@@ -1,1 +1,20 @@
-<h2>Book detail</h2>
+<%= render 'shared/info' %>
+    <div class="col-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table table-hover table-inverse">
+            <tbody>
+                <td><%= link_to users_path([:id]) do %>
+                      <%= attachment_image_tag @user, :image, :fill, 40, 40, format:'jpeg', fallback: "no_image.jpg" %>
+                      <%= @name %>
+                    <% end %>
+                </td>
+                <td><%= link_to @book.title, book_path(@book.id) %></td>
+                <td><%= @book.body %></td>
+            </tbody>
+        </table>
+      
+    </div>
+  </div>
+</main>
+
+<!--本の詳細画面-->

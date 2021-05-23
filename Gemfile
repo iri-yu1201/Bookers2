@@ -70,3 +70,5 @@ gem 'bootstrap','~>4.5'
 gem 'jquery-rails'
 
 gem 'coffee-script-source', '1.8.0'
+
+gem 'kaminari','~> 1.2.1'
