@@ -1,2 +1,29 @@
-<%= render 'shared/info' %>
-<!--マイページ、各ユーザーページ-->
+<%= render 'shared/info' , book: @book, user: @user %><!--マイページ、各ユーザーページ-->
+      <div class="col-8 offset-md-1">
+        <h2>Books</h2>
+          <table class="table table-hover table-inverse">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <% @books.each do |book| %>
+            <tbody>
+              <tr>
+                <td><%= link_to users_path([:id]) do %>
+                      <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback: "no_image.jpg" %>
+                    <% end %>
+                </td>
+                <td><%= link_to book.title, book_path(book.id) %></td>
+                <td><%= book.body %></td>
+              </tr>
+            </tbody>
+            <% end %>
+          </table>
+      </div>
+    </div>
+  </div>
+</main>

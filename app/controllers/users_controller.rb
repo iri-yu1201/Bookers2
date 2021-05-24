@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @name = current_user.name
-    @introduction = current_user.introduction
-    
+    @books = @user.books
+    @book = Book.new
+
   end
 
   def index
     @users = User.all
-    
+    @book = Book.new
+    @user = current_user
+
   end
 
   def edit
@@ -19,7 +21,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user.id)
-    
   end
 
   private
