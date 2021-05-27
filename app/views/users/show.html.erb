@@ -1,4 +1,47 @@
-<%= render 'shared/info' , book: @book, user: @user %><!--マイページ、各ユーザーページ-->
+<head>
+  <script src="https://kit.fontawesome.com/78227601ab.js" crossorigin="anonymous"></script>
+</head>
+  <% if @book.errors.any? %>
+        <%= @book.errors.count %>errors prohibited this obj from being saved:
+        <% @book.errors.full_messages.each do |message| %>
+          <ul>
+            <li><%= message %></li>
+          </ul>
+        <% end %>
+      <% end %>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>User info</h2>
+        <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format:'jpeg', fallback: "no_image.jpg" %>
+        <table class="table">
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+        </table>
+        <div class="row">
+          <%= link_to "", edit_user_path(@user.id), class:"btn btn-outline-secondary btn-block fas fa-user-cog" %>
+        </div>
+
+        <h2>New book</h2>
+        <%= form_with model:@book, local:true do |f| %>
+          <div class="form-group">
+            <h4>Title</h4>
+            <%= f.text_field :title %>
+          </div>
+          <div class="form-group">
+            <h4>Opinion</h4>
+            <%= f.text_area :body %>
+          </div>
+            <%= f.submit "Create Book", class:'btn btn-success' %>
+
+        <% end %>
+      </div>
       <div class="col-8 offset-md-1">
         <h2>Books</h2>
           <table class="table table-hover table-inverse">
@@ -13,8 +56,8 @@
             <% @books.each do |book| %>
             <tbody>
               <tr>
-                <td><%= link_to users_path([:id]) do %>
-                      <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback: "no_image.jpg" %>
+                <td><%= link_to user_path(book.user.id) do %>
+                      <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format:'jpeg', fallback: "no_image.jpg" %>
                     <% end %>
                 </td>
                 <td><%= link_to book.title, book_path(book.id) %></td>
