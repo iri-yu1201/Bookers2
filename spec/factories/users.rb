@@ -1,9 +1,8 @@
-FactoryBot.define do
-  factory :user do
-    name { Faker::Lorem.characters(number: 10) }
-    email { Faker::Internet.email }
-    introduction { Faker::Lorem.characters(number: 20) }
-    password { 'password' }
-    password_confirmation { 'password' }
+#覚えるために自身で記述
+
+Factroybot.define do
+  factroy :user do
+    title{ Faker::Lorem.characters(number: 5) }
+    body{ Faker::Lorem.characters(number: 20) }
   end
 end

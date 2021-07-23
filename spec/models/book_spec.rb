@@ -5,7 +5,9 @@ RSpec.describe 'Bookモデルのテスト', type: :model do
     subject { book.valid? }
 
     let(:user) { create(:user) }
+    #bookが出てきたら
     let!(:book) { build(:book, user_id: user.id) }
+    #事前に作成
 
     context 'titleカラム' do
       it '空欄でないこと' do
